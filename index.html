@@ -128,6 +128,18 @@
   footer a:hover {
     color: var(--orange);
   }
+
+  .course-link {
+  color: var(--brown);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.course-link:hover {
+  color: var(--orange);
+}
+
 </style>
 </head>
 
@@ -135,35 +147,81 @@
 
 <div class="container">
 
-  <div class="intro">
-    <h1>Beginner Courses</h1>
+  <section class="mb-4">
+    <h1 class="mb-1">Beginner Courses</h1>
     <div class="accent-line"></div>
-
-    <p class="tagline">by ZoukBits</p>
-
-    <p class="description">
-      <b>Intro:</b> We design our courses for beginners from many different backgrounds.
-      Our aim is to open the door into the Zouk community of Munich, while giving everyone space for their own ideas and personal growth.
-      Alongside solid technique, each course therefore comes with a special focus — a small extra that encourages you to explore Zouk your own way. <br>
-      <b>Registration:</b> E-Mail at zoukbits@zoukmunich.com (optional) <br>
-      <b>Payment:</b> Cash or PayPal at your first class<br>
-      <b>Missed the start of a course?</b> No problem! All our courses are drop-in: you can join at any time.<br>
-      <br>
-      🔥 <b>Check out the 50% offer!</b> ⬇️ <br>
+    <p class="text-muted mb-1">by ZoukBits</p>
+  
+    <p class="mb-3">
+      We design our courses for beginners from many different backgrounds.
+      Our aim is to open the door into the Zouk community of Munich, while giving everyone
+      space for their own ideas and personal growth.
+      Alongside solid technique, each course therefore comes with a special focus —
+      a small extra that encourages you to explore Zouk your own way.
     </p>
-  </div>
+  
+    <p class="mb-2">
+      <strong>We currently offer two courses and a practice session:</strong>
+    </p>
+    <ul class="mb-3">
+      <li>
+        <strong> 17.30–18.30:
+          <a href="#courses-section" data-course-tab="nutshell" class="course-link">
+             Zouk in a Nutshell</a>
+        </strong>
+        – overview of core concepts in Brazilian Zouk.
+      </li>
+      <li>
+        <strong>18.30–19.00: Praktika</strong> – Social Dancing & Training, free for everyone!
+      </li>
+      <li>
+        <strong>19.00–20.00: 
+          <a href="#courses-section" data-course-tab="social101" class="course-link">
+            Zouk Social 101</a>
+        </strong>
+        – having fun at socials from the very beginning.
+      </li>
+      
+    </ul>
+  
+    <p class="mb-2"><strong>How to join</strong></p>
+    <ol class="mb-3">
+      <li>Pick your course(s)
+      </a></li>
+      <li>
+        Just come, no registration needed. You'll find us <a href="#courses-section" data-course-tab="directions" class="course-link">
+          here</a>
+      </li>
+      <li>Pay in person (Cash or PayPal)</li>
+    </ol>
+  
+    <p class="mb-1"><strong>Missed the start of a course?</strong> No problem! All our courses are drop-in.</p>
+    <p class="mb-1"><strong>Questions?</strong> contact us at <a href="mailto:zoukbits@zoukmunich.com?subject=Course%20registration%20ZoukBits">
+      zoukbits@zoukmunich.com</a></p>
 
-  <!-- TABS -->
-  <div class="tabs">
-    <div class="tab active" onclick="openTab('tab_nutshell', this)">Zouk in a Nutshell</div>
-    <div class="tab" onclick="openTab('tab_social101', this)">Zouk Social 101</div>
-    <div class="tab" onclick="openTab('tab_directions', this)">Directions</div>
-  </div>
+    <p class="mb-0">
+      🔥 <strong>50% offer:</strong> See details on the course flyers below.
+    </p>
+  </section>
+  
+<!--. If you're unsure, contact us at <a href="mailto:zoukbits@zoukmunich.com?subject=Course%20registration%20ZoukBits">
+        zoukbits@zoukmunich.com-->
+
+
+  <!-- COURSES SECTION -->
+  <div id="courses-section">
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab active" onclick="openTab('tab_nutshell', this)">Zouk in a Nutshell</div>
+      <div class="tab" onclick="openTab('tab_social101', this)">Zouk Social 101</div>
+      <div class="tab" onclick="openTab('tab_directions', this)">Directions</div>
+    </div>
+  
 
   <!-- TAB CONTENT 1 -->
   <div id="tab_nutshell" class="tab-content active">
     <p class="description">
-      Get an overview over all big concepts of Brazilian Zouk and build a map for your future journey! <br>
+      Get an overview of core concepts in Brazilian Zouk and build a map for your future journey! <br>
       <b>Next Course:</b> March & April 2026
     </p>
     <div class="image-block">
@@ -178,7 +236,7 @@
   <div id="tab_social101" class="tab-content">
     <p class="description">
       Start with Brazilian Zouk and learn how to have fun in Social Dances from the very beginning! <br>
-      <b>Next Course:</b> March & April 2026
+      <b>Next Course:</b> January & February 2026
     </p>
     <div class="image-block">
       <img src="Social101.001.png" alt="Dance course image 1">
@@ -195,13 +253,47 @@
     </div>
   </div>
 
+  </div> <!-- end of #courses-section -->
+
   <!-- FOOTER -->
   <footer>
+  
     Back:
     <a href="https://www.linktr.ee/zoukbits" target="_blank">LinkTree</a>
   </footer>
 
 </div>
+
+<script>
+  // Handle "Details" and other course links
+  document.querySelectorAll('a[data-course-tab]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = this.getAttribute('data-course-tab'); // "nutshell", "social101", "directions"
+
+      // Scroll to the courses section
+      const section = document.getElementById('courses-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Activate the correct tab
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => {
+        const text = tab.textContent.trim();
+        const isNutshell  = target === 'nutshell'   && text.startsWith('Zouk in a Nutshell');
+        const isSocial    = target === 'social101'  && text.startsWith('Zouk Social 101');
+        const isDirections= target === 'directions' && text === 'Directions';
+
+        if (isNutshell || isSocial || isDirections) {
+          tab.click();
+        }
+      });
+    });
+  });
+</script>
+
+
 
 <script>
   function openTab(tabId, tabElement) {
